@@ -42,12 +42,18 @@ int main()
 
     sum = std::accumulate(nums.begin(), nums.end(), 0);
     std::cout << "Sum calculated using accumulate function defined in numeric header = " << sum << '\n';
-}
 
-/* Output
-Original values: 3 4 2 8 15 267
-Sum = 299
-After incrementing:  4 5 3 9 16 268
-Sum = 305
-Sum calculated using accumulate function defined in numeric header = 305
- */
+    // function to sort vector, lambda expression is for sorting in
+    // non-decreasing order Compiler can make out return type as
+    // bool, but shown here just for explanation
+
+    auto isGreater = [](const int& a, const int& b) -> bool
+    {
+        return a > b;
+    };
+
+    std::sort(nums.begin(), nums.end(), isGreater);
+    std::cout << "After sorting: ";
+    std::for_each(nums.begin(), nums.end(), print);
+    std::cout << '\n';
+}
